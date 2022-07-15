@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
     {
         $email = [
             'maulana24@live.com',
-            'yayanmaulana3@live.com'
+            'yayanmaulana3@gmail.com'
         ];
 
         DB::collection('users')->delete();
