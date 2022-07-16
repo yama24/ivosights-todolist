@@ -7,7 +7,12 @@ use App\Models\{User, ToDoList};
 
 class HomeController extends Controller
 {
-    public function index(Request $request)
+    public function index()
+    {
+        return view('index');
+    }
+
+    public function getData(Request $request)
     {
         $email = $request->input('email');
         if ($email) {
