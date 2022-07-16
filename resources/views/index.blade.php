@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('build/assets/app.f812159a.css') }}">
     <title>Document</title>
-    <script src="{{ asset('build/assets/app.f812159a.css') }}"></script>
+    <script src="{{ asset('build/assets/app.b08bd09b.js') }}"></script>
 </head>
 
 <body id="app">
