@@ -68,14 +68,13 @@
                 </div>
             </div>
         </nav>
-    </div>
 
 
-    <main class="py-4 margin-top-large padding-top-large">
-        <div class="paper container container-sm border border-primary margin-top-large">
-            @yield('content')
-        </div>
-    </main>
+        <main class="py-4 margin-top-large padding-top-large">
+            <div class="paper container container-sm border border-primary margin-top-large">
+                @yield('content')
+            </div>
+        </main>
     </div>
 </body>
 
