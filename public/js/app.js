@@ -20406,7 +20406,7 @@ var _hoisted_9 = {
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "expired"
-}, "Expired At", -1
+}, "Due Date", -1
 /* HOISTED */
 );
 
@@ -20499,7 +20499,7 @@ var _hoisted_9 = {
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "expired"
-}, "Expired At", -1
+}, "Due Date", -1
 /* HOISTED */
 );
 

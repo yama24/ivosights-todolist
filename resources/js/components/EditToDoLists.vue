@@ -31,7 +31,7 @@
               />
             </div>
             <div class="form-group">
-              <label for="expired">Expired At</label>
+              <label for="expired">Due Date</label>
               <input
                 class="input-block"
                 type="datetime-local"
