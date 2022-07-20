@@ -1,9 +1,12 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-import Home from "../pages/Home.vue";
-import Register from "../pages/Register.vue";
-import Login from "../pages/Login.vue";
-import Dashboard from "../pages/Dashboard.vue";
+import Home from "../pages/Home";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
+import Dashboard from "../pages/Dashboard";
+import ToDoLists from "../components/ToDoLists";
+import AddToDoLists from "../components/AddToDoLists";
+import EditToDoLists from "../components/EditToDoLists";
 
 export const routes = [
     {
@@ -25,6 +28,21 @@ export const routes = [
         name: "dashboard",
         path: "/dashboard",
         component: Dashboard,
+    },
+    {
+        name: "todolists",
+        path: "/todolists",
+        component: ToDoLists,
+    },
+    {
+        name: "addtodolists",
+        path: "/todolist/add",
+        component: AddToDoLists,
+    },
+    {
+        name: "edittodolists",
+        path: "/todolist/edit/:id",
+        component: EditToDoLists,
     },
 ];
 

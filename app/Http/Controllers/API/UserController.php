@@ -19,6 +19,7 @@ class UserController extends Controller
         ];
 
         if (Auth::attempt($credentials)) {
+            session(['email' => $request->email]);
             $success = true;
             $message = "User login successfully";
         } else {
@@ -37,16 +38,20 @@ class UserController extends Controller
     public function register(Request $request)
     {
         try {
-            $user = new User();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->save();
-
-            $success = true;
-            $message = "User register successfully";
+            if (User::where('email', '=', $request->email)->first()) {
+                $success = false;
+                $message = "Email registered";
+            } else {
+                $user = new User();
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->save();
+                $success = true;
+                $message = "User register successfully";
+            }
         } catch (\Illuminate\Database\QueryException $ex) {
-            $success = true;
+            $success = false;
             $message = $ex->getMessage();
         }
 
@@ -65,7 +70,7 @@ class UserController extends Controller
             $success = true;
             $message = "Logout successfully";
         } catch (\Illuminate\Database\QueryException $ex) {
-            $success = true;
+            $success = false;
             $message = $ex->getMessage();
         }
 

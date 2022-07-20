@@ -93,9 +93,9 @@ export default {
               password: this.password,
             })
             .then((response) => {
-              console.info(response);
               if (response.data.success) {
-                this.$router.go("/login");
+                // this.$router.go("/login");
+                window.location.href = "/login";
               } else {
                 this.error = response.data.message;
                 this.errorclass = "border border-danger";
@@ -108,11 +108,11 @@ export default {
       }
     },
   },
-    beforeRouteEnter(to, from, next) {
-      if (window.Laravel.isLoggedin) {
-        return next("dashboard");
-      }
-      next();
-    },
+  beforeRouteEnter(to, from, next) {
+    if (window.Laravel.isLoggedin) {
+      return next("dashboard");
+    }
+    next();
+  },
 };
 </script>

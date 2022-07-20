@@ -65,7 +65,6 @@ export default {
       errorclass: null,
     };
   },
-  created() {},
   methods: {
     handleSubmit(e) {
       e.preventDefault();

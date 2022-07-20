@@ -28,5 +28,11 @@ export default {
   },
   created() {},
   methods: {},
+  beforeRouteEnter(to, from, next) {
+    if (window.Laravel.isLoggedin) {
+      return next("dashboard");
+    }
+    next();
+  },
 };
 </script>

@@ -21,7 +21,7 @@ class ToDoListTableSeeder extends Seeder
             'yayanmaulana3@gmail.com'
         ];
         DB::collection('todolists')->delete();
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             DB::collection('todolists')->insert([
                 'task' => fake()->sentence(),
                 'user' => $email[rand(0, 1)],

@@ -24,7 +24,7 @@ export default {
   },
   created() {
     if (window.Laravel.user) {
-      this.name = window.Laravel.user.name;
+      this.name = window.Laravel.user;
     }
   },
   beforeRouteEnter(to, from, next) {
