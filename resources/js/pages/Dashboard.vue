@@ -1,5 +1,17 @@
 <template>
+  <main class="py-4 margin-top-large padding-top-large">
+    <div
+      class="
+        paper
+        container container-sm
+        border border-primary
+        margin-top-large
+      "
+    >
+
   <div>Welcome {{ name }}</div>
+  </div>
+  </main>
 </template>
 
 <script>
@@ -7,12 +19,12 @@ export default {
   name: "Dashboard",
   data() {
     return {
-      userName: null,
+      name: null,
     };
   },
   created() {
     if (window.Laravel.user) {
-      this.userName = window.Laravel.user.name;
+      this.name = window.Laravel.user.name;
     }
   },
   beforeRouteEnter(to, from, next) {

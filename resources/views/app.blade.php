@@ -14,6 +14,7 @@
     @if (Auth::check())
         <script>
             window.Laravel = {!! json_encode([
+                'appName' => config('app.name', 'Laravel'),
                 'isLoggedin' => true,
                 'user' => Auth::user(),
             ]) !!}
@@ -21,6 +22,7 @@
     @else
         <script>
             window.Laravel = {!! json_encode([
+                'appName' => config('app.name', 'Laravel'),
                 'isLoggedin' => false,
             ]) !!}
         </script>
