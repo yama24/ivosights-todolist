@@ -151,8 +151,8 @@ export default {
         .get("api/todolists")
         .then((response) => {
           //   console.info(response.data);
-          this.todolists = response.data.uncheck;
-          this.checkedtodolists = response.data.checked;
+          this.todolists = response.data.message.uncheck;
+          this.checkedtodolists = response.data.message.checked;
         })
         .catch(function (error) {
           console.error(error);

@@ -32,4 +32,5 @@ Route::group(['prefix' => 'todolists', 'middleware' => 'auth:sanctum'], function
     Route::post('check', [ToDoListController::class, 'check']);
     Route::get('edit/{id}', [ToDoListController::class, 'edit']);
     Route::post('update', [ToDoListController::class, 'update']);
+    Route::get('summary', [ToDoListController::class, 'summary']);
 });

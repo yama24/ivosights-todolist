@@ -14,8 +14,10 @@ class ToDoListController extends Controller
         $checkedtodolists = ToDoList::where('user', '=', session('email'))->where('done', '=', 1)->orderBy('created_at', 'DESC')->get();
         $response = [
             'success' => true,
-            'uncheck' => $todolists,
-            'checked' => $checkedtodolists
+            'message' => [
+                'uncheck' => $todolists,
+                'checked' => $checkedtodolists
+            ]
         ];
         return response()->json($response);
     }
@@ -85,6 +87,24 @@ class ToDoListController extends Controller
         $response = [
             'success' => true,
             'message' => "Task deleted successfully"
+        ];
+        return response()->json($response);
+    }
+
+    public function summary()
+    {
+        $unfinished = ToDoList::where('user', '=', session('email'))->where('done', '=', 0)->get()->count();
+        $finished = ToDoList::where('user', '=', session('email'))->where('done', '=', 1)->get()->count();
+        $total = $unfinished + $finished;
+        $overduedate = ToDoList::where('user', '=', session('email'))->where('done', '=', 0)->where('expired_at', '<=', date('d-m-Y H:i:s', time()))->get()->count();
+        $response = [
+            'success' => true,
+            'message' => [
+                'unfinished' => $unfinished,
+                'finished' => $finished,
+                'total' => $total,
+                'overduedate' => $overduedate,
+            ]
         ];
         return response()->json($response);
     }
