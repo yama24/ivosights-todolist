@@ -10,6 +10,16 @@ A task notes app with email notification
  - Vue Js 3
  - MongoDB
 
+
+## Screenshots
+
+![App Screenshot](https://raw.githubusercontent.com/yama24/ivosights-todolist/main/ss.png)
+![App Screenshot](https://raw.githubusercontent.com/yama24/ivosights-todolist/main/ss2.png)
+![App Screenshot](https://raw.githubusercontent.com/yama24/ivosights-todolist/main/ss3.png)
+![App Screenshot](https://raw.githubusercontent.com/yama24/ivosights-todolist/main/ss4.png)
+
+
+
 ## Installation
 
 Make sure this:
