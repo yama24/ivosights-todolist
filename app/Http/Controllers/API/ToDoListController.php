@@ -131,7 +131,7 @@ class ToDoListController extends Controller
         if (count($users)) {
             foreach ($users as $u) {
 
-                $todo = ToDoList::where('expired_at', '>=', date('d-m-Y H:i:s', strtotime(date('d-m-Y H') . ':00:00') + (60 * 60)))->where('expired_at', '<', date('d-m-Y H:i:s', strtotime(date('d-m-Y H') . ':00:00') + (60 * 60) + (60 * 60)))->where('done', '=', 0)->where('user', '=', $u->email)->orderBy('expired_at', 'ASC')->get();
+                $todo = ToDoList::where('expired_at', '>=', date('d-m-Y H:i:s', strtotime(date('d-m-Y H') . ':00:00')))->where('expired_at', '<', date('d-m-Y H:i:s', strtotime(date('d-m-Y H') . ':00:00') + (60 * 60)))->where('done', '=', 0)->where('user', '=', $u->email)->orderBy('expired_at', 'ASC')->get();
                 if (count($todo)) {
                     $title = "Incoming tasks in the next 1 hour";
                     $body = "";
