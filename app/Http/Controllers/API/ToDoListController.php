@@ -37,11 +37,11 @@ class ToDoListController extends Controller
                 'success' => true,
                 'message' => "ToDoList created successfully"
             ];
-            app('App\Http\Controllers\MailController')->index([
-                'to' => session('email'),
-                'title' => "New Task : " . $request->task,
-                'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($request->expired_at))
-            ]);
+            // app('App\Http\Controllers\MailController')->index([
+            //     'to' => session('email'),
+            //     'title' => "New Task : " . $request->task,
+            //     'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($request->expired_at))
+            // ]);
         } else {
             $response = [
                 'success' => false,
@@ -58,11 +58,11 @@ class ToDoListController extends Controller
             'success' => true,
             'message' => "Task deleted successfully"
         ];
-        app('App\Http\Controllers\MailController')->index([
-            'to' => session('email'),
-            'title' => "Deleted Task : " . $todo->task,
-            'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($todo->expired_at))
-        ]);
+        // app('App\Http\Controllers\MailController')->index([
+        //     'to' => session('email'),
+        //     'title' => "Deleted Task : " . $todo->task,
+        //     'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($todo->expired_at))
+        // ]);
         return response()->json($response);
     }
     public function edit($id)
@@ -88,11 +88,11 @@ class ToDoListController extends Controller
             'success' => true,
             'message' => $request
         ];
-        app('App\Http\Controllers\MailController')->index([
-            'to' => session('email'),
-            'title' => "Edited Task : " . $request->task,
-            'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($request->expired_at))
-        ]);
+        // app('App\Http\Controllers\MailController')->index([
+        //     'to' => session('email'),
+        //     'title' => "Edited Task : " . $request->task,
+        //     'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($request->expired_at))
+        // ]);
         return response()->json($response);
     }
 
@@ -128,7 +128,6 @@ class ToDoListController extends Controller
     public function crontab()
     {
         $users = User::all();
-        // dd($users);
         if (count($users)) {
             foreach ($users as $u) {
 
