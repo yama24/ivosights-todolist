@@ -18,7 +18,7 @@ class MailController extends Controller
             'body' => $request->message
         ];
 
-        Mail::to($request->to)->send(new \App\Mail\MyNotifMail($details));
+        Mail::to(session('email'))->send(new \App\Mail\MyNotifMail($details));
 
         $response = [
             'success' => true,

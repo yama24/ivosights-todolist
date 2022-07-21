@@ -26,7 +26,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::get('send-email', [MailController::class, 'index']);
+Route::post('send-email', [MailController::class, 'index']);
 
 Route::group(['prefix' => 'todolists', 'middleware' => 'auth:sanctum'], function () {
     Route::get('/', [ToDoListController::class, 'index']);

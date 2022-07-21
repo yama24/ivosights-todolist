@@ -19909,8 +19909,19 @@ __webpack_require__.r(__webpack_exports__);
           expired_at: _this.expired
         }).then(function (response) {
           if (response.data.success) {
-            //   console.info(response.data);
-            window.location.href = "/todolists";
+            _this.$axios.get("/sanctum/csrf-cookie").then(function (response) {
+              _this.$axios.post("/api/send-email", {
+                title: "New Task : " + _this.task,
+                message: "Due Date : " + _this.expired
+              }).then(function (response) {
+                if (response.data.success) {
+                  //   console.info(response.data);
+                  window.location.href = "/todolists";
+                }
+              })["catch"](function (error) {
+                console.error(error);
+              });
+            });
           } else {
             _this.error = response.data.message;
             _this.errorclass = "border border-danger";
@@ -19978,8 +19989,19 @@ __webpack_require__.r(__webpack_exports__);
           expired_at: _this2.expired
         }).then(function (response) {
           if (response.data.success) {
-            //   console.info(response.data);
-            window.location.href = "/todolists";
+            _this2.$axios.get("/sanctum/csrf-cookie").then(function (response) {
+              _this2.$axios.post("/api/send-email", {
+                title: "Edited Task : " + _this2.task,
+                message: "Due Date : " + _this2.expired
+              }).then(function (response) {
+                if (response.data.success) {
+                  //   console.info(response.data);
+                  window.location.href = "/todolists";
+                }
+              })["catch"](function (error) {
+                console.error(error);
+              });
+            });
           } else {
             _this2.error = response.data.message;
             _this2.errorclass = "border border-danger";
