@@ -71,6 +71,12 @@ and for email please set according to your email
 
 for test, I suggest to use [Mailtrap.io](https://mailtrap.io/)
 
+migrate database 
+
+```bash
+php artisan migrate
+```
+
 run the local server
 
 ```bash
