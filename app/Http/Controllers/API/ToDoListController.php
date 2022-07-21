@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
 use App\Models\ToDoList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -36,6 +37,11 @@ class ToDoListController extends Controller
                 'success' => true,
                 'message' => "ToDoList created successfully"
             ];
+            app('App\Http\Controllers\MailController')->index([
+                'to' => session('email'),
+                'title' => "New Task : " . $request->task,
+                'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($request->expired_at))
+            ]);
         } else {
             $response = [
                 'success' => false,
@@ -52,6 +58,11 @@ class ToDoListController extends Controller
             'success' => true,
             'message' => "Task deleted successfully"
         ];
+        app('App\Http\Controllers\MailController')->index([
+            'to' => session('email'),
+            'title' => "Deleted Task : " . $todo->task,
+            'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($todo->expired_at))
+        ]);
         return response()->json($response);
     }
     public function edit($id)
@@ -77,6 +88,11 @@ class ToDoListController extends Controller
             'success' => true,
             'message' => $request
         ];
+        app('App\Http\Controllers\MailController')->index([
+            'to' => session('email'),
+            'title' => "Edited Task : " . $request->task,
+            'message' => "Due Date : " . date('d-m-Y H:i:s', strtotime($request->expired_at))
+        ]);
         return response()->json($response);
     }
 
@@ -108,5 +124,30 @@ class ToDoListController extends Controller
             ]
         ];
         return response()->json($response);
+    }
+    public function crontab()
+    {
+        $users = User::all();
+        // dd($users);
+        if (count($users)) {
+            foreach ($users as $u) {
+
+                $todo = ToDoList::where('expired_at', '>=', date('d-m-Y H:i:s', strtotime(date('d-m-Y H') . ':00:00') + (60 * 60)))->where('expired_at', '<', date('d-m-Y H:i:s', strtotime(date('d-m-Y H') . ':00:00') + (60 * 60) + (60 * 60)))->where('done', '=', 0)->where('user', '=', $u->email)->orderBy('expired_at', 'ASC')->get();
+                if (count($todo)) {
+                    $title = "Incoming tasks in the next 1 hour";
+                    $body = "";
+                    $num = 1;
+                    foreach ($todo as $to) {
+                        $body .= "$num.  Task : <b>$to->task</b> (Due date : $to->expired_at)<hr>";
+                        $num++;
+                    }
+                    app('App\Http\Controllers\MailController')->index([
+                        'to' => $u->email,
+                        'title' => $title,
+                        'message' => $body
+                    ]);
+                }
+            }
+        }
     }
 }

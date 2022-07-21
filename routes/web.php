@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\API\ToDoListController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +27,7 @@ use App\Http\Controllers\MailController;
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/crontab', [ToDoListController::class, 'crontab']);
 
 Route::get('{any}', function () {
     return view('app');

@@ -10,15 +10,14 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    public function index(Request $request)
+    public function index($arr)
     {
-
         $details = [
-            'title' => $request->title,
-            'body' => $request->message
+            'title' => $arr['title'],
+            'body' => $arr['message']
         ];
 
-        Mail::to(session('email'))->send(new \App\Mail\MyNotifMail($details));
+        Mail::to($arr['to'])->send(new \App\Mail\MyNotifMail($details));
 
         $response = [
             'success' => true,
